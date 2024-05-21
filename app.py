@@ -17,6 +17,7 @@ app.config['MONGODB_SETTINGS'] = {
 api = Api(app)
 db = MongoEngine(app)
 
+
 class UserModel(db.Document):
     cpf = db.StringField(required=True, unique=True)
     first_name = db.StringField(required=True)
@@ -24,9 +25,11 @@ class UserModel(db.Document):
     email = db.EmailField(required=True)
     birth_date = db.DateTimeField(required=True)
 
+
 class Users(Resource):
     def get(self):
         return {'message': 'user 1'}
+
 
 class User(Resource):
     def post(self):
@@ -34,6 +37,7 @@ class User(Resource):
 
     def get(self, cpf):
         return {'message': 'CPF'}
+
 
 api.add_resource(Users, '/users')
 api.add_resource(User, '/user', '/user/<string:cpf>')
